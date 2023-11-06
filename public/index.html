@@ -1,1 +1,98 @@
-Hello world
+<!DOCTYPE HTML>
+<html lang="en">
+   <head>
+       <title>Hannas Hamburgare</title>
+       <meta charset="utf-8"/>
+   </head>
+   <body>
+        <header>
+            <h1>Välkommen till Hannas Hamburgare!</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Meny</h2>
+                <p>För nuvarande finns följande 3 burgare på menyn</p>
+                <div style="display: inline-block;">
+                <h3>
+                    Klassisk ostburgare
+                </h3>
+                <img src="https://cdn-bk-se-ordering.azureedge.net/media/ywfd4uqs/cheesy-cheese.png" alt="Klassisk ostburgare" title="Klassisk ostburgare" style="width: 200px;">
+                <ul>
+                    <li>Innehåller mjölk och gluten</li>
+                    <li>Går att få glutenfri och med vegetarisk biff</li>
+                </ul>
+                </div>
+                <div style="display: inline-block;">
+                <h3>
+                    Dubbelburgare med bacon
+                </h3>
+                <img src="https://cdn-bk-se-ordering.azureedge.net/media/rvndqsz4/double-gourmet-grill-steakhouse.png" alt="Dubbelburgare med bacon" title="Dubbelburgare med bacon" style="width: 200px;">
+                <ul>
+                    <li>Innehåller mjölk och gluten</li>
+                    <li>Går att få glutenfri</li>
+                </ul>    
+                </div>
+                <div style="display: inline-block;">
+                <h3>
+                    Krispig kycklingburgare
+                </h3>
+                <img src="https://cdn-bk-se-ordering.azureedge.net/media/tzdfpoe0/bk_kiosk_400x290_singel_crispychicken.png" alt="Krispig kycklingburgare" title="Krispig kycklingburgare" style="width: 200px;">
+                <ul>
+                    <li>Innehåller mjölk och gluten</li>
+                    <li>Går att få glutenfri</li>
+                </ul>
+                </div>
+
+            </section>
+            <section>
+                <h2>Beställningsinformation</h2>
+                <p>Vänligen fyll i din information</p>
+                <p>
+                    <label for="name">Namn</label><br>
+                    <input type="text" id="name" name="n" required="required" placeholder="För- och efternamn">
+                </p>
+                <p>
+                    <label for="email">E-post</label><br>
+                    <input type="email" id="email" name="em" required="required" placeholder="E-post-adress">
+                </p>
+                <p>
+                    <label for="adress">Gatunamn</label><br>
+                    <input type="text" id="adress" name="ad" required="required" placeholder="Gatunamn">
+                </p>
+                <p>
+                    <label for="no">Husnummer</label><br>
+                    <input type="number" id="no" name="no" required="required" placeholder="Husnummer">
+                </p>
+                <p>
+                    <label for="betalsätt">Betalsätt</label><be>
+                    <select id="betalsätt" name="betal">
+                        <option>Kort</option>
+                        <option selected="selected">Swish</option>
+                        <option>Apple pay</option>
+                        <option>Klarna</option>
+                    </select>
+                 </p>
+                 <p>
+                    <form>
+                        <p>Kön:</p>
+                        <input type="radio" id="male" name="gender" value="male">
+                        <label for="male">Man</label><br>
+                
+                        <input type="radio" id="female" name="gender" value="female">
+                        <label for="female">Kvinna</label><br>
+                
+                        <input type="radio" id="other" name="gender" value="other" checked>
+                        <label for="other">Vill inte ange</label><br>
+                    </form>
+                </p>
+            </section>
+            <button type="Send">
+                <img src="https://burgerking.se/assets/images/food-menu-placeholder.webp" style="width: 35px;">
+                <font size="+2">Skicka beställning</font>
+              </button>
+        </main>
+        <footer>
+            <hr>
+        </footer>
+   </body>
+</html>
