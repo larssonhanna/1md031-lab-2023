@@ -3,22 +3,24 @@
    <head>
        <title>Hannas Hamburgare</title>
        <meta charset="utf-8"/>
+       <link rel="stylesheet" type="text/css" href="style.css">
    </head>
    <body>
         <header>
-            <h1>Välkommen till Hannas Hamburgare!</h1>
+            <span id="headerimg"><img src="https://tb-static.uber.com/prod/image-proc/processed_images/f90558da74dc7fc90080a418d99c5758/97e6648b3593c29cb4a6335f976e6d84.jpeg" alt="Header" title="Header"></span>
+            <span id="headline"><h1>Hannas Hamburgare!</h1></span>
         </header>
         <main>
-            <section>
+            <section id="meny">
                 <h2>Meny</h2>
-                <p>För nuvarande finns följande 3 burgare på menyn</p>
+                <p>För nuvarande finns 3 burgare på menyn</p>
                 <div style="display: inline-block;">
                 <h3>
                     Klassisk ostburgare
                 </h3>
-                <img src="https://cdn-bk-se-ordering.azureedge.net/media/ywfd4uqs/cheesy-cheese.png" alt="Klassisk ostburgare" title="Klassisk ostburgare" style="width: 200px;">
+                <img src="https://cdn-bk-se-ordering.azureedge.net/media/ywfd4uqs/cheesy-cheese.png" alt="Klassisk ostburgare" title="Klassisk ostburgare" style="height: 200px;">
                 <ul>
-                    <li>Innehåller mjölk och gluten</li>
+                    <li>Innehåller <span class="ing">mjölk</span> och <span class="ing">gluten</span></li>
                     <li>Går att få glutenfri och med vegetarisk biff</li>
                 </ul>
                 </div>
@@ -26,9 +28,9 @@
                 <h3>
                     Dubbelburgare med bacon
                 </h3>
-                <img src="https://cdn-bk-se-ordering.azureedge.net/media/rvndqsz4/double-gourmet-grill-steakhouse.png" alt="Dubbelburgare med bacon" title="Dubbelburgare med bacon" style="width: 200px;">
+                <img src="https://cdn-bk-se-ordering.azureedge.net/media/rvndqsz4/double-gourmet-grill-steakhouse.png" alt="Dubbelburgare med bacon" title="Dubbelburgare med bacon" style="height: 200px;">
                 <ul>
-                    <li>Innehåller mjölk och gluten</li>
+                    <li>Innehåller <span class="ing">mjölk</span> och <span class="ing">gluten</span></li>
                     <li>Går att få glutenfri</li>
                 </ul>    
                 </div>
@@ -36,15 +38,14 @@
                 <h3>
                     Krispig kycklingburgare
                 </h3>
-                <img src="https://cdn-bk-se-ordering.azureedge.net/media/tzdfpoe0/bk_kiosk_400x290_singel_crispychicken.png" alt="Krispig kycklingburgare" title="Krispig kycklingburgare" style="width: 200px;">
+                <img src="https://cdn-bk-se-ordering.azureedge.net/media/tzdfpoe0/bk_kiosk_400x290_singel_crispychicken.png" alt="Krispig kycklingburgare" title="Krispig kycklingburgare" style="height: 200px;">
                 <ul>
-                    <li>Innehåller mjölk och gluten</li>
+                    <li>Innehåller <span class="ing">gluten</span></li>
                     <li>Går att få glutenfri</li>
                 </ul>
                 </div>
-
             </section>
-            <section>
+            <section id ="info">
                 <h2>Beställningsinformation</h2>
                 <p>Vänligen fyll i din information</p>
                 <p>
@@ -53,15 +54,15 @@
                 </p>
                 <p>
                     <label for="email">E-post</label><br>
-                    <input type="email" id="email" name="em" required="required" placeholder="E-post-adress">
+                    <input type="email" id="email" name="em" required="required" placeholder="exempel@gmail.com">
                 </p>
                 <p>
                     <label for="adress">Gatunamn</label><br>
-                    <input type="text" id="adress" name="ad" required="required" placeholder="Gatunamn">
+                    <input type="text" id="adress" name="ad" required="required" placeholder="Exempelgatan">
                 </p>
                 <p>
                     <label for="no">Husnummer</label><br>
-                    <input type="number" id="no" name="no" required="required" placeholder="Husnummer">
+                    <input type="number" id="no" name="no" required="required" placeholder="0">
                 </p>
                 <p>
                     <label for="betalsätt">Betalsätt</label><be>
