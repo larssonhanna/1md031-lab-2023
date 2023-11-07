@@ -9,12 +9,12 @@ body {
  #meny{
     color:antiquewhite;
     background-color: black;
-    border: 2px dashed;
+    border: 4px double;
     border-color: antiquewhite;
     border-radius: 25px;
  }
  #info{
-    border: 2px dashed;
+    border: 4px double;
     border-color: black;
     border-radius: 25px;
  }
@@ -43,7 +43,7 @@ body {
  }
  header{
     margin: 20px;
-    height: 300px;
+    height: 200px;
     overflow:hidden;
     border-radius: 25px;
  }
@@ -53,8 +53,15 @@ body {
     height: auto;
     object-fit: cover;
  }
- #headline{
+ header > h1{
     position: absolute;
-    left: 10vw;
-    top: 20px;
+    width: 100%;
+    margin: 0 auto;
+    top: 100px;
+    left: 0px;
+    text-align: center;
+ }
+ .wrapper{
+   display: grid;
+   grid-template-columns: 33% 33% 33%;
  }
