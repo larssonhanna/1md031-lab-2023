@@ -55,6 +55,6 @@ body {
  }
  #headline{
     position: absolute;
-    margin-top: -400px;
-    margin-left: 100px;
+    left: 10vw;
+    top: 20px;
  }
