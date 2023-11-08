@@ -18,6 +18,36 @@ import io from 'socket.io-client'
 
 const socket = io();
 
+function MenuItem(name, url, hasLactose, hasGluten){
+    this.name = name;
+    this.url = url;
+    this.hasGluten = hasGluten;
+    this.hasLactose = hasLactose;
+}
+
+const Burgers = [
+  {
+    name: "Klassisk ostburgare",
+    url: "https://cdn-bk-se-ordering.azureedge.net/media/ywfd4uqs/cheesy-cheese.png",
+    hasLactose: true,
+    hasGluten: true
+  },
+  {
+    name: "Dubbelburgare med bacon",
+    url: "https://cdn-bk-se-ordering.azureedge.net/media/rvndqsz4/double-gourmet-grill-steakhouse.png",
+    hasLactose: true,
+    hasGluten: true
+  },
+  {
+    name: "Krispig kycklingburgare",
+    url: "https://cdn-bk-se-ordering.azureedge.net/media/tzdfpoe0/bk_kiosk_400x290_singel_crispychicken.png",
+    hasLactose: false,
+    hasGluten: true
+  }
+];
+
+console.log(Burgers);
+
 export default {
   name: 'HomeView',
   components: {
@@ -25,10 +55,7 @@ export default {
   },
   data: function () {
     return {
-      burgers: [ {name: "small burger", kCal: 250},
-                 {name: "standard burger", kCal: 450},
-                 {name: "large burger", kCal: 850}
-               ]
+      burgers: Burgers
     }
   },
   methods: {
