@@ -18,15 +18,18 @@
       <p>Vänligen fyll i din information</p>
       <p>
         <label for="name">Namn</label><br>
-        <input v-model="formData.name" type="text" id="name" name="n" required="required" placeholder="För- och efternamn">
+        <input v-model="formData.name" type="text" id="name" name="n" required="required"
+          placeholder="För- och efternamn">
       </p>
       <p>
         <label for="email">E-post</label><br>
-        <input v-model="formData.email" type="email" id="email" name="em" required="required" placeholder="exempel@gmail.com">
+        <input v-model="formData.email" type="email" id="email" name="em" required="required"
+          placeholder="exempel@gmail.com">
       </p>
       <p>
         <label for="adress">Gatunamn</label><br>
-        <input v-model="formData.address" type="text" id="adress" name="ad" required="required" placeholder="Exempelgatan">
+        <input v-model="formData.address" type="text" id="adress" name="ad" required="required"
+          placeholder="Exempelgatan">
       </p>
       <p>
         <label for="no">Husnummer</label><br>
@@ -56,11 +59,15 @@
       </p>
     </section>
 
-    <div id="map" v-on:click="addOrder">
-      click here
+
+    <div id="map" v-on:click="setLocation" style="position:relative">
+      <div id="target"
+        v-bind:style="{ position: 'absolute', left: formData.location.x + 'px', top: formData.location.y + 'px' }">
+        T
+      </div>
     </div>
 
-    <button v-on:click="submitForm" type="button" class="custom-button">
+    <button v-on:click="addOrder()" type="button" class="custom-button">
       <img src="https://burgerking.se/assets/images/food-menu-placeholder.webp" style="width: 35px;">
       Skicka beställning
     </button>
@@ -102,50 +109,39 @@ export default {
         gender: 'other',
         orderedBurgers: [],
         location: {
-        x: 0,
-        y: 0
-      },
+          x: 0,
+          y: 0
+        },
       },
     }
-    },
+  },
   methods: {
     getOrderNumber: function () {
       return Math.floor(Math.random() * 100000);
     },
-    addOrder: function (event) {
-      
-  var offset = {
-    x: event.currentTarget.getBoundingClientRect().left,
-    y: event.currentTarget.getBoundingClientRect().top
-  };
-
-  // Get the clicked coordinates relative to the #map container
-  const clickedX = event.clientX - 10 - offset.x;
-  const clickedY = event.clientY - 10 - offset.y;
-
-  // Append a black box to #map at the clicked location
-  const dot = document.createElement('div');
-  dot.className = 'dot';
-  dot.style.left = `${clickedX}px`;
-  dot.style.top = `${clickedY}px`;
-  document.getElementById('map').appendChild(dot);
-
-  // Update the location in formData
-  this.formData.location = {
-    x: clickedX,
-    y: clickedY
-  };
-
-  // Emit the order to the server
-  socket.emit("addOrder", {
-    orderId: this.getOrderNumber(),
-    details: {
-      x: clickedX,
-      y: clickedY
+    setLocation: function (event) {
+      var offset = {
+        x: event.currentTarget.getBoundingClientRect().left,
+        y: event.currentTarget.getBoundingClientRect().top
+      };
+      this.formData.location = {
+        x: event.clientX - 20 - offset.x,
+        y: event.clientY - 20 - offset.y
+      }
     },
-    orderItems: this.formData.orderedBurgers,
-  });
-},
+    addOrder: function () {
+      console.log(this.formData)
+
+      // Emit the order to the server
+      socket.emit("addOrder", {
+        orderId: this.getOrderNumber(),
+        details: {
+          x: this.formData.location.x,
+          y: this.formData.location.y
+        },
+        orderItems: this.formData.orderedBurgers,
+      });
+    },
     updateOrderedBurgers(burger) {
       // Update formData.orderedBurgers based on the emitted data
       const existingBurger = this.formData.orderedBurgers.find(b => b.name === burger.name);
@@ -161,8 +157,8 @@ export default {
     },
     submitForm() {
       console.log('Form Data:', this.formData);
+    },
   },
-},
 }
 </script>
 
@@ -174,18 +170,18 @@ export default {
   overflow: scroll;
 }
 
-.dot{
-    background: black;
-    color: white;
-    width:20px;
-    height:20px;
-    border-radius: 10px;
-    text-align: center;
-    position: relative;
-    margin: 0;
-    padding: 0;
-    background-repeat: no-repeat;
-    cursor: crosshair;
+.dot {
+  background: black;
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  background-repeat: no-repeat;
+  cursor: crosshair;
 }
 
 .custom-button {
@@ -270,4 +266,5 @@ header>h1 {
 .wrapper {
   display: grid;
   grid-template-columns: 33% 33% 33%;
-}</style>
+}
+</style>
