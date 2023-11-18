@@ -1,0 +1,22 @@
+[{
+    "name": "Klassisk ostburgare",
+    "url": "https://cdn-bk-se-ordering.azureedge.net/media/ywfd4uqs/cheesy-cheese.png",
+    "hasLactose": true,
+    "hasGluten": true,
+    "kCal" : 524
+  },
+  {
+    "name": "Dubbelburgare med bacon",
+    "url": "https://cdn-bk-se-ordering.azureedge.net/media/rvndqsz4/double-gourmet-grill-steakhouse.png",
+    "hasLactose": true,
+    "hasGluten": true,
+    "kCal" : 830
+  },
+  {
+    "name": "Krispig kycklingburgare",
+    "url": "https://cdn-bk-se-ordering.azureedge.net/media/tzdfpoe0/bk_kiosk_400x290_singel_crispychicken.png",
+    "hasLactose": false,
+    "hasGluten": true,
+    "kCal" : 458
+  }
+  ]
