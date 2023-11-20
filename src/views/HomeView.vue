@@ -10,7 +10,7 @@
       <h2>Meny</h2>
       <p>För nuvarande finns 3 burgare på menyn</p>
       <div class="wrapper">
-        <Burger v-for="burger in burgers" :key="burger.name" :burger="burger" @orderedBurgers="updateOrderedBurgers" />
+        <Burger v-for="burger in burgers" :key="burger.name" :burger="burger" @orderedBurgers="updateOrderedBurgers" ref="burgers" />
       </div>
     </section>
     <section id="info">
@@ -27,15 +27,6 @@
           placeholder="exempel@gmail.com">
       </p>
       <p>
-        <label for="adress">Gatunamn</label><br>
-        <input v-model="formData.address" type="text" id="adress" name="ad" required="required"
-          placeholder="Exempelgatan">
-      </p>
-      <p>
-        <label for="no">Husnummer</label><br>
-        <input v-model="formData.houseNumber" type="number" id="no" name="no" required="required" placeholder="0">
-      </p>
-      <p>
         <label for="betalsätt">Betalsätt</label>
         <select v-model="formData.paymentMethod" id="betalsätt" name="betal">
           <option>Kort</option>
@@ -47,23 +38,23 @@
       <p>
       <form>
         <p>Kön:</p>
-        <input v-model="formData.gender" type="radio" id="male" name="gender" value="male">
-        <label for="male">Man</label><br>
+        <input v-model="formData.gender" type="radio" id="Man" name="gender" value="Man">
+        <label for="Man">Man</label><br>
 
-        <input v-model="formData.gender" type="radio" id="female" name="gender" value="female">
-        <label for="female">Kvinna</label><br>
+        <input v-model="formData.gender" type="radio" id="Kvinna" name="gender" value="Kvinna">
+        <label for="Kvinna">Kvinna</label><br>
 
-        <input v-model="formData.gender" type="radio" id="other" name="gender" value="other" checked>
-        <label for="other">Vill inte ange</label><br>
+        <input v-model="formData.gender" type="radio" id="Vill inte ange" name="gender" value="Vill inte ange" checked>
+        <label for="Vill inte ange">Vill inte ange</label><br>
       </form>
       </p>
     </section>
 
-
+Vänligen markera din leveransadress på kartan nedan:
     <div id="map" v-on:click="setLocation" style="position:relative">
       <div id="target"
         v-bind:style="{ position: 'absolute', left: formData.location.x + 'px', top: formData.location.y + 'px' }">
-        T
+        <div class="dot">T</div>
       </div>
     </div>
 
@@ -74,15 +65,8 @@
   </main>
   <footer>
     <hr>
+    Interface Programming with a User Perspective 2023
   </footer>
-  <div>
-    <div>
-      <h1>Burgers</h1>
-      <!--  <Burger v-for="burger in burgers" 
-              v-bind:burger="burger" 
-              v-bind:key="burger.name"/> -->
-    </div>
-  </div>
 </template>
 
 <script>
@@ -103,44 +87,70 @@ export default {
       formData: {
         name: '',
         email: '',
-        address: '',
-        houseNumber: '',
         paymentMethod: 'Swish',
-        gender: 'other',
+        gender: 'Vill inte ange',
         orderedBurgers: [],
         location: {
           x: 0,
           y: 0
         },
       },
+      orderNumber: 0,
     }
   },
   methods: {
-    getOrderNumber: function () {
-      return Math.floor(Math.random() * 100000);
-    },
     setLocation: function (event) {
       var offset = {
         x: event.currentTarget.getBoundingClientRect().left,
         y: event.currentTarget.getBoundingClientRect().top
       };
       this.formData.location = {
-        x: event.clientX - 20 - offset.x,
-        y: event.clientY - 20 - offset.y
+        x: event.clientX - 40 - offset.x,
+        y: event.clientY - 40 - offset.y
       }
     },
     addOrder: function () {
+
+      if (this.formData.orderedBurgers.length === 0) {
+      alert("Du måste beställa minst en burgare");
+      return;
+    }
+
       console.log(this.formData)
+      this.orderNumber++;
 
       // Emit the order to the server
       socket.emit("addOrder", {
-        orderId: this.getOrderNumber(),
+        orderId: this.orderNumber,
         details: {
           x: this.formData.location.x,
           y: this.formData.location.y
         },
-        orderItems: this.formData.orderedBurgers,
+        customer: {
+          name: this.formData.name,
+          email: this.formData.email,
+          paymentMethod: this.formData.paymentMethod,
+          gender: this.formData.gender,
+          orderItems: this.formData.orderedBurgers,
+        },
       });
+      alert("Beställning skickad!");
+
+      // Reset form data
+    this.formData = {
+      name: '',
+      email: '',
+      paymentMethod: 'Swish',
+      gender: 'Vill inte ange',
+      orderedBurgers: [],
+      location: {
+        x: 0,
+        y: 0
+      },
+    };
+    this.$refs.burgers.forEach(burgerComponent => {
+      burgerComponent.resetBurgerNumbers();
+    });
     },
     updateOrderedBurgers(burger) {
       // Update formData.orderedBurgers based on the emitted data
@@ -168,19 +178,6 @@ export default {
   height: 1078px;
   background: url("/Users/hannalarsson/Documents/Granssnitt/Lab1/1md031-lab-2023/public/img/polacks.jpg");
   overflow: scroll;
-}
-
-.dot {
-  background: black;
-  color: white;
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
-  text-align: center;
-  position: relative;
-  margin: 0;
-  padding: 0;
-  background-repeat: no-repeat;
   cursor: crosshair;
 }
 
@@ -194,6 +191,15 @@ body {
 
 .ing {
   font-weight: bold;
+}
+
+.dot {
+  background: black;
+  color: white;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  text-align: center;
 }
 
 #meny {

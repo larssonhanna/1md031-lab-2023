@@ -10,9 +10,10 @@
       <li>Kalorier: {{ burger.kCal }} kCal</li>
     </ul>
     <div class="order-container">
-        <p>Antal: {{ amountOrdered }}</p>
-    <button v-on:click="addToOrder">↑</button>
-    <button v-on:click="removeFromOrder">↓</button>
+      <p>Antal:</p>
+      <button v-on:click="removeFromOrder">-</button>
+        <p>    {{ amountOrdered }}</p>
+    <button v-on:click="addToOrder">+</button>
   </div>
   </div>
 
@@ -36,6 +37,9 @@ methods: {
       name: this.burger.name,
       amount: this.amountOrdered
     });
+    },
+    resetBurgerNumbers() {
+      this.amountOrdered = 0;
     },
     removeFromOrder() {
       if (this.amountOrdered > 0) {
