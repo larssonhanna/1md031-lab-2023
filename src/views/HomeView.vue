@@ -76,6 +76,14 @@ import io from 'socket.io-client'
 
 const socket = io();
 
+// never used
+function MenuItem(name, url, hasLactose, hasGluten){
+    this.name = name;
+    this.url = url;
+    this.hasGluten = hasGluten;
+    this.hasLactose = hasLactose;
+}
+
 export default {
   name: 'HomeView',
   components: {
@@ -109,6 +117,7 @@ export default {
         y: event.clientY - 40 - offset.y
       }
     },
+    
     addOrder: function () {
 
       if (this.formData.orderedBurgers.length === 0) {
